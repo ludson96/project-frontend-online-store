@@ -25,6 +25,15 @@
   height: 35px;
 }
 
+.itens-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.iten {
+  width: 300px;
+}
+
 .category {
   border: 1px solid black;
   display: flex;
