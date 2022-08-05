@@ -8,7 +8,12 @@ export default class Header extends React.Component {
         <h1>Frontend Online Store</h1>
         <nav className="header-nav">
           <Link to="/">Pesquisar</Link>
-          <Link to="/shopping-cart">Carrinho de compras</Link>
+          <Link
+            data-testid="shopping-cart-button"
+            to="/shopping-cart"
+          >
+            Carrinho de compras
+          </Link>
         </nav>
       </div>
     );
