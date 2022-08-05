@@ -33,3 +33,15 @@
 .iten {
   width: 300px;
 }
+.category {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: max-content;
+}
+
+.categoryRadio {
+  margin: 3px;
+}
+

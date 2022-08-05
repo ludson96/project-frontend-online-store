@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import GetCategory from '../components/GetCategory';
 
 export default class Home extends Component {
   constructor() {
@@ -48,6 +49,9 @@ export default class Home extends Component {
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
+        <div>
+          <GetCategory />
+        </div>
         {resultsFound ? (
           <div className="itens-container">
             {itens.map((iten) => (
@@ -62,7 +66,6 @@ export default class Home extends Component {
             ))}
           </div>
         ) : <p>Nenhum produto foi encontrado</p>}
-
       </div>
     );
   }
