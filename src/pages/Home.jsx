@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GetCategory from '../components/GetCategory';
 
 export default class Home extends Component {
   render() {
@@ -11,6 +12,9 @@ export default class Home extends Component {
         <h3 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
+        <div>
+          <GetCategory />
+        </div>
       </div>
     );
   }
