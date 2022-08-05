@@ -19,7 +19,8 @@ export default class Home extends Component {
 
   searchButtonOnClick = async () => {
     const { searchInputValue } = this.state;
-    const itens = await getProductsFromCategoryAndQuery('', searchInputValue);
+    const response = await getProductsFromCategoryAndQuery('', searchInputValue);
+    const itens = response.results;
     if (itens.length === 0) this.setState({ resultsFound: false });
     if (itens.length !== 0) this.setState({ resultsFound: true });
     this.setState({ itens });
