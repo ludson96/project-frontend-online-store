@@ -26,6 +26,7 @@ export default class Home extends Component {
     const itens = response.results;
     this.setState({ itens });
   }
+  //
 
   searchButtonOnClick = async () => {
     const { searchInputValue, idCategory } = this.state;
