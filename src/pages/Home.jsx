@@ -21,9 +21,7 @@ export default class Home extends Component {
   selectCategory = async (id) => {
     this.setState({ idCategory: id });
     const { searchInputValue } = this.state;
-    if (searchInputValue !== '') {
-      this.searchButtonOnClick();
-    }
+    if (searchInputValue !== '') this.searchButtonOnClick();
     const response = await getProductsFromCategoryAndQuery(id, '');
     const itens = response.results;
     this.setState({ itens });
