@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import GetCategory from '../components/GetCategory';
+import Header from '../components/Header';
 import addItemLocalStorage from '../services/ItemCart';
 
 export default class Home extends Component {
@@ -42,6 +44,7 @@ export default class Home extends Component {
     const { searchInputValue, itens, resultsFound } = this.state;
     return (
       <div className="home">
+        <Header />
         <div className="search-field">
           <input
             data-testid="query-input"
@@ -69,12 +72,17 @@ export default class Home extends Component {
           <div className="itens-container">
             {itens.map((iten) => (
               <div data-testid="product" key={ iten.id } className="iten">
-                <h3>{iten.title}</h3>
-                <img src={ iten.thumbnail } alt={ iten.title } />
-                <p>
-                  RS
-                  {iten.price}
-                </p>
+                <Link
+                  to={ `/product-detail/${iten.id}` }
+                  data-testid="product-detail-link"
+                >
+                  <h3>{iten.title}</h3>
+                  <img src={ iten.thumbnail } alt={ iten.title } />
+                  <p>
+                    RS
+                    {iten.price}
+                  </p>
+                </Link>
                 <button
                   type="button"
                   data-testid="product-add-to-cart"
