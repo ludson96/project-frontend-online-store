@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import GetCategory from '../components/GetCategory';
+import Header from '../components/Header';
 
 export default class Home extends Component {
   constructor() {
@@ -42,6 +43,7 @@ export default class Home extends Component {
     const { searchInputValue, itens, resultsFound } = this.state;
     return (
       <div className="home">
+        <Header />
         <div className="search-field">
           <input
             data-testid="query-input"
