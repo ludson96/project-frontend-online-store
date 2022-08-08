@@ -10,6 +10,7 @@ export default class Home extends Component {
       searchInputValue: '',
       itens: [],
       resultsFound: true,
+      idCategory: '',
     };
   }
 
@@ -17,9 +18,19 @@ export default class Home extends Component {
     this.setState({ searchInputValue: target.value });
   }
 
-  searchButtonOnClick = async () => {
+  selectCategory = async (id) => {
+    this.setState({ idCategory: id });
     const { searchInputValue } = this.state;
-    const response = await getProductsFromCategoryAndQuery('', searchInputValue);
+    if (searchInputValue !== '') this.searchButtonOnClick();
+    const response = await getProductsFromCategoryAndQuery(id, '');
+    const itens = response.results;
+    this.setState({ itens });
+  }
+  //
+
+  searchButtonOnClick = async () => {
+    const { searchInputValue, idCategory } = this.state;
+    const response = await getProductsFromCategoryAndQuery(idCategory, searchInputValue);
     const itens = response.results;
     if (itens.length === 0) this.setState({ resultsFound: false });
     if (itens.length !== 0) this.setState({ resultsFound: true });
@@ -51,7 +62,7 @@ export default class Home extends Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h3>
         <div>
-          <GetCategory />
+          <GetCategory selectCategory={ this.selectCategory } />
         </div>
         {resultsFound ? (
           <div className="itens-container">
