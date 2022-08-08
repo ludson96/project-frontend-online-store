@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import GetCategory from '../components/GetCategory';
 import Header from '../components/Header';
+import addItemLocalStorage from '../services/ItemCart';
 
 export default class Home extends Component {
   constructor() {
@@ -82,6 +83,20 @@ export default class Home extends Component {
                     {iten.price}
                   </p>
                 </Link>
+                <button
+                  type="button"
+                  data-testid="product-add-to-cart"
+                  value={ iten.id }
+                  onClick={ () => addItemLocalStorage(
+                    iten.id,
+                    iten.title,
+                    iten.thumbnail,
+                    iten.price,
+                  ) }
+                >
+                  Adicionar ao Carrinho
+
+                </button>
               </div>
             ))}
           </div>
