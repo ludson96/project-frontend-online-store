@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getProductsFromId } from '../services/api';
+import addItemLocalStorage from '../services/ItemCart';
+import Header from '../components/Header';
 
 export default class ProductDetails extends Component {
   constructor() {
@@ -13,37 +15,38 @@ export default class ProductDetails extends Component {
   componentDidMount = async () => {
     const { match: { params: { id } } } = this.props;
     const produto = await getProductsFromId(id);
-    console.log(produto);
     this.setState({ produto });
   }
 
-  goToShoppingCart = () => {
-    const { history } = this.props;
-    history.push('/shopping-cart');
+  addToShoppingCart = () => {
+    const { produto: { id, title, thumbnail, price } } = this.state;
+    addItemLocalStorage(id, title, thumbnail, price);
   }
 
   render() {
     const { produto } = this.state;
     return (
       <div>
-        <h2 data-testid="product-detail-name">{produto.title}</h2>
-        <img
-          src={ produto.thumbnail }
-          alt={ `Imagem de ${produto.title}` }
-          data-testid="product-detail-image"
-        />
-        <p data-testid="product-detail-price">
-          {`R$ ${produto.price},00`}
-        </p>
-        <button
-          to="/shopping-cart"
-          type="button"
-          data-testid="shopping-cart-button"
-          onClick={ this.goToShoppingCart }
-        >
-          Salvar
+        <Header />
+        <div>
+          <h2 data-testid="product-detail-name">{produto.title}</h2>
+          <img
+            src={ produto.thumbnail }
+            alt={ `Imagem de ${produto.title}` }
+            data-testid="product-detail-image"
+          />
+          <p data-testid="product-detail-price">
+            {`R$ ${produto.price},00`}
+          </p>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ this.addToShoppingCart }
+          >
+            Salvar
 
-        </button>
+          </button>
+        </div>
       </div>
     );
   }
@@ -55,5 +58,4 @@ ProductDetails.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
-  history: PropTypes.string.isRequired,
 };
