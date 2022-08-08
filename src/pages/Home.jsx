@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import GetCategory from '../components/GetCategory';
 
@@ -68,12 +69,17 @@ export default class Home extends Component {
           <div className="itens-container">
             {itens.map((iten) => (
               <div data-testid="product" key={ iten.id } className="iten">
-                <h3>{iten.title}</h3>
-                <img src={ iten.thumbnail } alt={ iten.title } />
-                <p>
-                  RS
-                  {iten.price}
-                </p>
+                <Link
+                  to={ `/product-detail/${iten.id}` }
+                  data-testid="product-detail-link"
+                >
+                  <h3>{iten.title}</h3>
+                  <img src={ iten.thumbnail } alt={ iten.title } />
+                  <p>
+                    RS
+                    {iten.price}
+                  </p>
+                </Link>
               </div>
             ))}
           </div>
