@@ -42,6 +42,7 @@ export default class Home extends Component {
 
   render() {
     const { searchInputValue, itens, resultsFound } = this.state;
+    const stockMax = 'available_quantity';
     return (
       <div className="home">
         <Header />
@@ -62,45 +63,46 @@ export default class Home extends Component {
             Pesquisar
           </button>
         </div>
-        <h3 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h3>
-        <div>
-          <GetCategory selectCategory={ this.selectCategory } />
-        </div>
-        {resultsFound ? (
-          <div className="itens-container">
-            {itens.map((iten) => (
-              <div data-testid="product" key={ iten.id } className="iten">
-                <Link
-                  to={ `/product-detail/${iten.id}` }
-                  data-testid="product-detail-link"
-                >
-                  <h3>{iten.title}</h3>
-                  <img src={ iten.thumbnail } alt={ iten.title } />
-                  <p>
-                    RS
-                    {iten.price}
-                  </p>
-                </Link>
-                <button
-                  type="button"
-                  data-testid="product-add-to-cart"
-                  value={ iten.id }
-                  onClick={ () => addItemLocalStorage(
-                    iten.id,
-                    iten.title,
-                    iten.thumbnail,
-                    iten.price,
-                  ) }
-                >
-                  Adicionar ao Carrinho
-
-                </button>
-              </div>
-            ))}
+        {(!searchInputValue.length > 0 && itens.length === 0)
+        && (
+          <h3 data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </h3>
+        )}
+        <div className="search-results">
+          <div>
+            <GetCategory selectCategory={ this.selectCategory } />
           </div>
-        ) : <p>Nenhum produto foi encontrado</p>}
+          {resultsFound ? (
+            <div className="itens-container">
+              {itens.map((iten) => (
+                <div data-testid="product" key={ iten.id } className="iten">
+                  <Link
+                    to={ `/product-detail/${iten.id}` }
+                    data-testid="product-detail-link"
+                  >
+                    <h3>{iten.title}</h3>
+                    <img src={ iten.thumbnail } alt={ iten.title } />
+                    <p>
+                      R$
+                      {iten.price}
+                    </p>
+                  </Link>
+                  <button
+                    type="button"
+                    className="addCart-btn"
+                    data-testid="product-add-to-cart"
+                    value={ iten.id }
+                    onClick={ () => addItemLocalStorage(iten, stockMax) }
+                  >
+                    Adicionar ao Carrinho
+
+                  </button>
+                </div>
+              ))}
+            </div>
+          ) : <h1 className="product-not-found">Nenhum produto foi encontrado</h1>}
+        </div>
       </div>
     );
   }

@@ -19,8 +19,8 @@ export default class ProductDetails extends Component {
   }
 
   addToShoppingCart = () => {
-    const { produto: { id, title, thumbnail, price } } = this.state;
-    addItemLocalStorage(id, title, thumbnail, price);
+    const { produto } = this.state;
+    addItemLocalStorage(produto);
   }
 
   render() {
@@ -43,7 +43,7 @@ export default class ProductDetails extends Component {
             data-testid="product-detail-add-to-cart"
             onClick={ this.addToShoppingCart }
           >
-            Salvar
+            Adicionar ao carrinho
 
           </button>
         </div>
