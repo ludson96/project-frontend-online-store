@@ -10,7 +10,7 @@
 
 - Este é um projeto desenvolvido para aprender a `metodologia Kanban`.
 - Este é um projeto desenvolvido para praticar `React`, `Passagem de props`, `Cilo de vida` e `React Router`;
-- Primeiro teste utilizando `metodologia Kanban`.
+- Primeiro projeto utilizando `metodologia Kanban`.
 
 ## Linguagens e ferramentas usadas
 
