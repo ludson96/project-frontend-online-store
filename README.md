@@ -4,7 +4,7 @@
 
 ## Módulo: Front-end
 
- Repositório possuí projeto desenvolvido no período que estive na **Trybe**, abordando conceitos de ciclo de vida de um componente e React Router Dom, mas dessa vez tudo em grupo utilizando a metodologia Kanban.
+ Repositório possuí projeto desenvolvido no período que estive na **Trybe**, abordando conceitos de ciclo de vida de um componente e React Router Dom, utilizando a metodologia Kanban em um grupo de alunos de 5 pessoas aqui na **Trybe**.
 
 ## Informações de aprendizados
 
