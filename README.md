@@ -1,4 +1,4 @@
-# Repositório do projeto Front-end Online Store
+# Repositório do projeto Front-end Online Store 🛒
 
 # 🚧 Estilização em desenvolvimento ! 🚧
 
